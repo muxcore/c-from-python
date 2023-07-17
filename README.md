@@ -1,23 +1,29 @@
 # Call C from Python **'c-from-python'**
 
-Simple example of calling **DLL** (Dynamic Link Library) from Python.
-<br>
-Additional example of **command line**  invocations of Microsoft **Visual Studio** compiler and linker to compile and build DLL/.exe
+Yet another example of calling **DLL** (Dynamic Link Library) from Python. More valuable is example of **command line**  invocations of Microsoft **Visual Studio** compiler and linker to compile and build DLL/.exe
 
 ## Requirements
 
 Created with:
 <br>
  - Microsoft (R) C/C++ Optimizing Compiler Version 19.36.32532 for x64
- <br>
  - Python 3.11.4 (tags/v3.11.4:d2340ef, Jun  7 2023, 05:45:37) [MSC v.1934 64 bit (AMD64)] on win32
-
 
 ## Installation
 
-In case you want to just see example of calling DLL,  use: **\code\pyCallCPrimeGen.py**. Please change path variable accordingly. Example DLL is provided in _\build_ directory. <br>
+Clone repository, and check build_local.bat. Use .py files as you would expect.
 
-If you would like to build DLL yourself using MS tool chain check **build_local.bat** file. Example requires **\code\primeGenDLL.c**. First part is setting up environment variables, important part is:
+### Files
+- primeGenDLL.c - C version of prime number generator (not particularly fast)
+- primeGenApp.c - C file to create standalone .exe
+- *pyCallCPrimeGen.py* - Python script that call C library (DLL)
+- pyPrimeGenApp.py - native Python implementation of prime number generator used for comparisons
+
+In case you want to just see example of calling DLL,  see: **\code\pyCallCPrimeGen.py**. Please change path variable accordingly. Example DLL is provided in _\build_ directory. <br>
+
+If you would like to build DLL yourself using MS tool chain check **build_local.bat** file. Example requires **\code\primeGenDLL.c**.
+<br>
+First part is setting up environment variables, important part is:
 ```
 ::Build DLL
 cl /LD  %scriptpath%\code\%filename%.c /Fe:%scriptpath%build\%filename%.dll /Fo:%scriptpath%build\%filename%.obj 
@@ -32,11 +38,9 @@ link -incremental:no /DEBUG %scriptpath%\build\*.obj /SUBSYSTEM:console /OUT:%sc
 
 ```
 
-## Usage
-- primeGenDLL.c - C version of prime number generator (not particularly fast)
-- primeGenApp.c - C file to create standalone .exe
-- *pyCallCPrimeGen.py* - Python script that call C library (DLL)
-- pyPrimeGenApp.py - native Python implementation of prime number generator used for comparisons
+## Disclaimer
+
+You can find faster prime number generators.
 
 
 ## Licence
